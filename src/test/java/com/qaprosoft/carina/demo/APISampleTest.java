@@ -24,6 +24,8 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.demo.api.GetUserMethods;
 import com.qaprosoft.carina.demo.api.PostUserMethod;
+//import com.qaprosoft.carina.demo.api.weather.DeleteCityWeather;
+import com.qaprosoft.carina.demo.api.weather.GetCityWeather;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,4 +93,23 @@ public class APISampleTest implements IAbstractTest {
         deleteUserMethod.callAPIExpectSuccess();
         deleteUserMethod.validateResponse();
     }
+
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    public void testGetWeather() {
+        GetCityWeather getCityWeather = new GetCityWeather();
+        getCityWeather.callAPIExpectSuccess();
+        getCityWeather.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+        getCityWeather.validateResponseAgainstSchema("api/users/Weather_get/rs.schema");
+    }
+
+//    @Test()
+//    @MethodOwner(owner = "qpsdemo")
+//    @TestPriority(Priority.P1)
+//    public void testDeleteCity() {
+//        DeleteCityWeather deleteCityWeather = new DeleteCityWeather();
+//        deleteCityWeather.setProperties("api/users/user.properties");
+//        deleteCityWeather.callAPIExpectSuccess();
+//        deleteCityWeather.validateResponse();
+//    }
 }

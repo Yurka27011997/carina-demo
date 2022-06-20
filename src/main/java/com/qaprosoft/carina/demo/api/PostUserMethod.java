@@ -25,8 +25,8 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
 @Endpoint(url = "${base_url}/users", methodType = HttpMethodType.POST)
-@RequestTemplatePath(path = "api/users/_post/rq.json")
-@ResponseTemplatePath(path = "api/users/_post/rs.json")
+@RequestTemplatePath(path = "api/users/_post/rq.json") // шукаємо json який буде доданий до баді тут відправляємо на сервер
+@ResponseTemplatePath(path = "api/users/_post/rs.json") // шукаємо json який буде доданий до баді тут отримаємо відповідь
 @SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
 public class PostUserMethod extends AbstractApiMethodV2 {
 
