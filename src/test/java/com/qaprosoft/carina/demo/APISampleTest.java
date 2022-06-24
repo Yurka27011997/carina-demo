@@ -94,14 +94,8 @@ public class APISampleTest implements IAbstractTest {
         deleteUserMethod.validateResponse();
     }
 
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
-    public void testGetWeather() {
-        GetCityWeather getCityWeather = new GetCityWeather();
-        getCityWeather.callAPIExpectSuccess();
-        getCityWeather.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getCityWeather.validateResponseAgainstSchema("api/users/Weather_get/rs.schema");
-    }
+
+
 
 //    @Test()
 //    @MethodOwner(owner = "qpsdemo")
