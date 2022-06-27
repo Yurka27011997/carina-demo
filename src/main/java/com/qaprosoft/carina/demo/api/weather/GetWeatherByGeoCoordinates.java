@@ -9,11 +9,12 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
 @Endpoint(url = "${base_url}", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/weather/_get/rs.json")
+@ResponseTemplatePath(path = "api/weather/_getByGeoCoordinates/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 
-public class GetCityWeather extends AbstractApiMethodV2 {
-    public GetCityWeather() {
+public class GetWeatherByGeoCoordinates extends AbstractApiMethodV2 {
+    public GetWeatherByGeoCoordinates() {
+        super();
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
     }
 }

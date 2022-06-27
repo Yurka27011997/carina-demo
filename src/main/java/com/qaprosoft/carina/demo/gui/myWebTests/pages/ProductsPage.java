@@ -23,35 +23,37 @@ public class ProductsPage extends AbstractPage {
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     private ExtendedWebElement cardOnePresent;
 
-    @FindBy(xpath = "//*[@id='header_container']/div[2]/div[2]/span/select/option[1]")
+    @FindBy(xpath = "//option[@value='az']")
     private ExtendedWebElement filterAtoZ;
 
-    @FindBy(xpath = "//*[@id='header_container']/div[2]/div[2]/span/select/option[2]")
+    @FindBy(xpath = "//option[@value='za']")
     private ExtendedWebElement filterZtoA;
 
-    @FindBy(xpath = "//*[@id='header_container']/div[2]/div[2]/span/select/option[3]")
+    @FindBy(xpath = "//option[@value='lohi']")
     private ExtendedWebElement filterPriceLowtoHigh;
 
-    @FindBy(xpath = "//*[@id='header_container']/div[2]/div[2]/span/select/option[4]")
+    @FindBy(xpath = "//option[@value='hilo']")
     private ExtendedWebElement filterPriceHightoLow;
 
-    @FindBy(xpath = "//*[@id='header_container']/div[2]/div[2]/span/span")
+    @FindBy(xpath = "//span[@class='active_option' and 'Name (A to Z)']")
     private ExtendedWebElement defaultDropdown;
+
+    @FindBy(xpath = "//select[@class='product_sort_container']")
+    private ExtendedWebElement dropDownMenu;
+
 
 
     public ProductsPage(WebDriver driver) {
         super(driver);
-        setPageURL("inventory.html");
+        setPageURL("/inventory.html");
     }
 
     public boolean isImageOnePresent() {
-        System.out.println("ok");
         return imageOnePresent.isElementPresent(5);
 
     }
 
     public boolean isTitleOnePresent() {
-        System.out.println("ok");
         return titleOnePresent.isElementPresent(5);
     }
 
@@ -60,48 +62,48 @@ public class ProductsPage extends AbstractPage {
     }
 
     public boolean isPriceOnePresent() {
-        System.out.println("ok");
         return priceOnePresent.isElementPresent(5);
     }
 
     public boolean isCardOnePresent() {
-        System.out.println("ok");
         return cardOnePresent.isElementPresent(5);
 
     }
 
-    public boolean isfilterNameAToZPresent() {
-        System.out.println("ok");
-        return filterAtoZ.isElementPresent(5);
+    public String isFilterNameAToZPresent() {
+        return filterAtoZ.getText();
     }
 
-    public boolean isfilterNameZToAPresent() {
-        System.out.println("ok");
-        return filterZtoA.isElementPresent(5);
+    public String isFilterNameZToAPresent() {
+        return filterZtoA.getText();
     }
 
-    public boolean isfilterPriceLowToHighPresent() {
-        System.out.println("ok");
-        return filterPriceLowtoHigh.isElementPresent(5);
+    public String isFilterPriceLowToHighPresent() {
+        return filterPriceLowtoHigh.getText();
     }
 
-    public boolean isfilterPriceHighToLowPresent() {
-        System.out.println("ok");
-        return filterPriceHightoLow.isElementPresent(5);
+    public String isFilterPriceHighToLowPresent() {
+        return filterPriceHightoLow.getText();
     }
 
-    public String defaultDropdownMenuName() {
+    public String getDefaultDropdownMenuName() {
         return defaultDropdown.getText();
     }
 
-    public boolean clickOnDropdownMenu() {
-        filterZtoA.click();
-        return false;
+    public ProductsPage clickOnDropdownMenu() {
+        dropDownMenu.click(5);
+        return new ProductsPage(getDriver());
     }
 
-    public String selectDropDownMenu() {
+    public String getChooseDownMenu() {
+        filterZtoA.click(5);
         return filterZtoA.getText();
     }
+
+    public boolean isDropDownMenuIsPresent() {
+        return dropDownMenu.isElementPresent(5);
+    }
+
 
 
 

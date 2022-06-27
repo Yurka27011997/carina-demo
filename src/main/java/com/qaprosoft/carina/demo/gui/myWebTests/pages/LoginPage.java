@@ -16,37 +16,68 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@class='submit-button btn_action']")
     private ExtendedWebElement loginBtn;
 
+    @FindBy(xpath = "//div[@class='error-message-container error']")
+    private ExtendedWebElement errorMessage;
+
+    @FindBy(className = "login_logo")
+    private ExtendedWebElement title;
+
+    @FindBy(className = "error_icon")
+    private ExtendedWebElement errorIcon;
+
+    @FindBy(className = "error-button")
+    private ExtendedWebElement errorButton;
+
+    @FindBy(xpath = "//*[@id='login_button_container']/div/form/div[3]")
+    private ExtendedWebElement errorMessageLogin;
+
 
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public void getUsername(String username) {
+    public void setUsername(String username) {
         usernameField.type(username);
     }
 
-    public void getPassword(String password) {
+    public void setPassword(String password) {
         passwordField.type(password);
     }
 
-    public boolean getLogin(){
+    public ProductsPage clickLogin(){
         loginBtn.click();
-        return true;
+        return new ProductsPage(getDriver());
     }
 
     public boolean getLocation() {
-        Point first = usernameField.getLocation();
-        Point second = passwordField.getLocation();
-        Point loginButton = loginBtn.getLocation();
-        if (first.getY() < second.getY() && second.getY() < loginButton.getY()) {
-
-            return true;
-
-        } else
-
-            return false;
+        Point userNameFieldPoint = usernameField.getLocation();
+        Point passwordFieldPoint = passwordField.getLocation();
+        Point loginButtonPoint = loginBtn.getLocation();
+        return userNameFieldPoint.getY() < passwordFieldPoint.getY() && passwordFieldPoint.getY() < loginButtonPoint.getY();
     }
+
+    public boolean isErrorMessagePresent() {
+        return errorMessage.isElementPresent();
+    }
+
+    public boolean isTitlePresent() {
+        return title.isElementPresent(5);
+    }
+
+    public String getErrorMessage() {
+        return errorMessageLogin.getText();
+    }
+
+    public boolean isErrorIconPresent() {
+        return errorIcon.isElementPresent();
+    }
+
+    public boolean isErrorButtonPresent() {
+        return errorButton.isElementPresent();
+    }
+
+
 
 
 
