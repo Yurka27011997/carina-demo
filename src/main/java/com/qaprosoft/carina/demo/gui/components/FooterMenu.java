@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.components;
 
+import com.qaprosoft.carina.demo.gui.pages.myGSM.RegisterPage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -53,4 +54,12 @@ public class FooterMenu extends AbstractUIObject {
         newsLink.click();
         return new NewsPage(driver);
     }
+
+
+//    public RegisterPage click() {
+//        return new RegisterPage(driver);
+//    }
+//
+//    public void type(String username) {
+//    }
 }

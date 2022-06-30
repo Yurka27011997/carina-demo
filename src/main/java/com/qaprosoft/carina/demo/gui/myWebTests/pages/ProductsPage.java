@@ -35,11 +35,15 @@ public class ProductsPage extends AbstractPage {
     @FindBy(xpath = "//option[@value='hilo']")
     private ExtendedWebElement filterPriceHightoLow;
 
-    @FindBy(xpath = "//span[@class='active_option' and 'Name (A to Z)']")
-    private ExtendedWebElement defaultDropdown;
+    @FindBy(xpath = "//span[@class='active_option']")
+    private ExtendedWebElement activeOption;
 
     @FindBy(xpath = "//select[@class='product_sort_container']")
     private ExtendedWebElement dropDownMenu;
+
+    @FindBy(xpath = "//select[@class='product_sort_container']//option")
+    private ExtendedWebElement selectOptionOfDropDownMenu;
+    
 
 
 
@@ -86,8 +90,8 @@ public class ProductsPage extends AbstractPage {
         return filterPriceHightoLow.getText();
     }
 
-    public String getDefaultDropdownMenuName() {
-        return defaultDropdown.getText();
+    public String getActiveOptionMenu() {
+        return activeOption.getText();
     }
 
     public ProductsPage clickOnDropdownMenu() {
@@ -96,7 +100,6 @@ public class ProductsPage extends AbstractPage {
     }
 
     public String getChooseDownMenu() {
-        filterZtoA.click(5);
         return filterZtoA.getText();
     }
 

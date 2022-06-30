@@ -33,7 +33,7 @@ public class MyWebTest implements IAbstractTest {
         loginPage.setPassword(passwordData);
         SoftAssert softAssert = new SoftAssert();
         ProductsPage productsPage = loginPage.clickLogin();
-        softAssert.assertFalse(productsPage.isPageOpened(), "Product page is not opened");
+        softAssert.assertTrue(productsPage.isPageOpened(), "Product page is not opened");
         softAssert.assertTrue(productsPage.isImageOnePresent(), "Image isn't present");
         softAssert.assertTrue(productsPage.isTitleOnePresent(), "Title isn't present");
         softAssert.assertTrue(productsPage.isDescriptionOnePresent(), "Description isn't present");
@@ -60,7 +60,7 @@ public class MyWebTest implements IAbstractTest {
         loginPage.setPassword(passwordData);
         SoftAssert softAssert = new SoftAssert();
         ProductsPage productsPage = loginPage.clickLogin();
-        softAssert.assertFalse(productsPage.isPageOpened(), "Product page is not opened");
+        softAssert.assertTrue(productsPage.isPageOpened(), "Product page is not opened");
         productsPage.clickOnDropdownMenu();
         softAssert.assertEquals(productsPage.isFilterNameAToZPresent(), "Name (A to Z)", "Filter Name A to Z is Lost");
         softAssert.assertEquals(productsPage.isFilterNameZToAPresent(), "Name (Z to A)", "Filter Name Z to A is Lost");
@@ -78,8 +78,8 @@ public class MyWebTest implements IAbstractTest {
         loginPage.setPassword(passwordData);
         SoftAssert softAssert = new SoftAssert();
         ProductsPage productsPage = loginPage.clickLogin();
-        softAssert.assertFalse(productsPage.isPageOpened(), "Product page is not opened");
-        softAssert.assertEquals(productsPage.getDefaultDropdownMenuName(), "NAME (A TO Z)", "Default dropdown name is wrong");
+        Assert.assertTrue(productsPage.isPageOpened(), "Product page is not opened");
+        softAssert.assertEquals(productsPage.getActiveOptionMenu(), "NAME (A TO Z)", "Default dropdown name is wrong");
         softAssert.assertTrue(productsPage.isDropDownMenuIsPresent(), "DropDownMenu, isn't present");
         productsPage.clickOnDropdownMenu();
         softAssert.assertEquals(productsPage.getChooseDownMenu(), "Name (Z to A)", "Filter Z to A don't choose");
